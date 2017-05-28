@@ -46,6 +46,8 @@ public class DashboardView extends View {
     private CharSequence[] tikeStrArray = null;
     private int startColor;
     private int endColor;
+    private int[] colors;
+    private float[] cIndex;
     private int progressColor;
     private int circleColor;
 
@@ -175,14 +177,11 @@ public class DashboardView extends View {
 
     }
 
-
     private void initShader() {
         updateOval();
-        if (startColor != 0 && endColor != 0) {
-//            LinearGradient shader = new LinearGradient(rectF2.left, rectF2.top, rectF2.right, rectF2.bottom,
-//                    endColor, startColor, Shader.TileMode.CLAMP);
-            SweepGradient shader = new SweepGradient(0, 0, new int[]{startColor, endColor}, null);
-            float rotate = 90f;
+        if (colors.length >= 2 && cIndex.length >= 2 && colors.length == cIndex.length) {
+            SweepGradient shader = new SweepGradient(0, 0, colors, cIndex);
+            float rotate = 120f;
             Matrix gradientMatrix = new Matrix();
             gradientMatrix.preRotate(rotate, 0,0);
             shader.setLocalMatrix(gradientMatrix);
@@ -524,6 +523,24 @@ public class DashboardView extends View {
      */
     public void setEndColor(int endColor) {
         this.endColor = endColor;
+        initShader();
+    }
+
+    public void setColors(int[] c, int[] i) {
+        if (c.length < 2 || i.length < 2){
+            return;
+        }
+        float[] tmp = new float[i.length];
+        tmp[0] = 0.07f;
+        tmp[i.length - 1] = 0.83f;
+        if (c.length > 2) {
+            float total = i[i.length - 1];
+            for(int j = 1; j < i.length - 1; j++) {
+                tmp[j] = tmp[0] + ((float)i[j]/total)*0.76f;
+            }
+        }
+        this.colors = c;
+        this.cIndex = tmp;
         initShader();
     }
 
