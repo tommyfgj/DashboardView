@@ -526,7 +526,7 @@ public class DashboardView extends View {
         initShader();
     }
 
-    public void setColors(int[] c, int[] i) {
+    public void setColors(int[] c, float[] i) {
         if (c.length < 2 || i.length < 2){
             return;
         }
