@@ -227,8 +227,8 @@ public class DashboardView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = getWidth();
-        mHight = getHeight();
+        mWidth = getWidth() - 30;
+        mHight = getHeight() - 30;
         initShader();
     }
 
@@ -353,7 +353,7 @@ public class DashboardView extends View {
                 if (tikeStrArray.length > (i % tikeGroup)) {
                     String text = tikeStrArray[i / tikeGroup].toString();
                     Paint.FontMetricsInt fontMetrics = paintTikeStr.getFontMetricsInt();
-                    int baseline = ((numY + 40) + (fontMetrics.bottom - fontMetrics.top) / 2);
+                    int baseline = ((numY + 30) + (fontMetrics.bottom - fontMetrics.top) / 2);
                     canvas.drawText(text, -getTextViewLength(paintTikeStr, text) / 2, baseline, paintTikeStr);
                 }
             } else {
