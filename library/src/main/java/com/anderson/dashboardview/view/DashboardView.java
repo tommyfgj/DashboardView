@@ -534,9 +534,9 @@ public class DashboardView extends View {
         tmp[0] = 0.07f;
         tmp[i.length - 1] = 0.83f;
         if (c.length > 2) {
-            float total = i[i.length - 1];
+            float total = i[i.length - 1] - i[0];
             for(int j = 1; j < i.length - 1; j++) {
-                tmp[j] = tmp[0] + ((float)i[j]/total)*0.76f;
+                tmp[j] = tmp[0] + ((i[j] - i[0])/total)*0.76f;
             }
         }
         this.colors = c;
