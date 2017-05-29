@@ -410,7 +410,7 @@ public class DashboardView extends View {
      * 设置百分比
      * @param percent
      */
-    public void setPercent(int percent) {
+    public void setPercent(float percent) {
         setAnimator(percent);
     }
 
